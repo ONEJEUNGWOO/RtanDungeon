@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4620327033350303773}
   - component: {fileID: 5379635779166198537}
   - component: {fileID: 2563192655973280788}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1ff7df5a7ce574084baaf3ae9548c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 76defdc4ac2ba464a9cef791e4c0cdf3, type: 2}
 --- !u!1 &7997283851194496783
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,12 +107,12 @@ GameObject:
   - component: {fileID: 4546656175002251656}
   - component: {fileID: 4346183399658976332}
   - component: {fileID: 1802199321025168418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4546656175002251656
 Transform:

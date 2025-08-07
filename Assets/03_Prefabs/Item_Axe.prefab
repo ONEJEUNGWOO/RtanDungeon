@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2224168669283298224}
   - component: {fileID: 5094114830886317941}
   - component: {fileID: 2055442768226991301}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1ff7df5a7ce574084baaf3ae9548c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: cead1ae15e08d944894a8095103e3674, type: 2}
 --- !u!1 &8168148478219969050
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ GameObject:
   - component: {fileID: 822281713909655520}
   - component: {fileID: 2282933516964415533}
   - component: {fileID: 7886144664922329571}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ax_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
