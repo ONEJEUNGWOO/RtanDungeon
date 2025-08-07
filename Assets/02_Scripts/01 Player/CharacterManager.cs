@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour       //플레이어 참조할 때 의존될 클래스
 {
     private static CharacterManager _instance;      //싱글톤화
     public static CharacterManager Instance         //오브젝트없을경우 만들기
