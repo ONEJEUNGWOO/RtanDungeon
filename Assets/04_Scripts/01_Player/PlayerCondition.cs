@@ -18,7 +18,7 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
 
     public float hungryDamage;
 
-    public event Action onTakeDamage;
+    public event Action OnTakeDamage;
 
 
     void Update()
@@ -56,8 +56,7 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
     public void TakePhysicalDamage(int damage)
     {
         health.Subtract(damage);
-        onTakeDamage?.Invoke();
-        
+        OnTakeDamage?.Invoke();  
     }
 
     public bool UseStamina(float amount)

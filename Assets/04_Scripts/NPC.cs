@@ -10,7 +10,7 @@ public enum AIState
     Attacking
 }
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IDamage
 {
     [Header("Stats")]
     public int health;
@@ -183,5 +183,41 @@ public class NPC : MonoBehaviour
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
         return angle < fieldOfView * 0.5f;
+    }
+
+    public void TakePhysicalDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
+
+        StartCoroutine(DamageFlash());
+    }
+
+    void Die()
+    {
+        for (int i =0; i < dropOnDeath.Length; i++)
+        {
+            Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up, Quaternion.identity);
+        }
+
+        Destroy(gameObject);
+    }
+
+    IEnumerator DamageFlash()
+    {
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].material.color = new Color(1.0f, 0.6f, 0.6f);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].material.color = Color.white;
+        }
     }
 }

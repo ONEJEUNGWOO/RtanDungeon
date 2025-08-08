@@ -2934,10 +2934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab06f953d72abd4c9cebaca64fe1821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 6
   walkSpeed: 1
   runSpeed: 4
-  dropOnDeath: []
+  dropOnDeath:
+  - {fileID: 11400000, guid: 59927f4a6648faa42973473e3bdd8793, type: 2}
+  - {fileID: 11400000, guid: 2c4443858bf0a2246ac2b6b6fec3baa1, type: 2}
   detectDistance: 5
   minWanderDistance: 5
   maxWanderDistance: 10

@@ -12,12 +12,12 @@ public class DamageIndicator : MonoBehaviour    //데미지를 입었을 때 이미지를 껐
 
     void Start()
     {
-        CharacterManager.Instance.Player.condition.onTakeDamage += Flash;   //이벤트 발생 할때 실행 할 함수등록
+        CharacterManager.Instance.Player.condition.OnTakeDamage += Flash;   //이벤트 발생 할때 실행 할 함수등록
     }
 
     private void OnDisable()
     {
-        CharacterManager.Instance.Player.condition.onTakeDamage -= Flash;   //구독 취소
+        CharacterManager.Instance.Player.condition.OnTakeDamage -= Flash;   //구독 취소
     }
 
     public void Flash()
