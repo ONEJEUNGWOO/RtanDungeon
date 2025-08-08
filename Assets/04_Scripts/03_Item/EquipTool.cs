@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EquipTool : Equip
 {
     public float attackRate;
-    public bool attacking;
+    private bool attacking;
     public float attackDistance;
 
     [Header("Resource Gathering")]
@@ -15,15 +16,25 @@ public class EquipTool : Equip
     public bool doesDealDamage;
     public int damage;
 
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnAttackInput()
     {
-        
+        if (!attacking)
+        {
+            attacking = true;
+            animator.SetTrigger("Attack");
+            Invoke("OnCanAttack", attackRate);
+        }
+    }
+
+    void OnCanAttack()
+    {
+        attacking = false;
     }
 }
