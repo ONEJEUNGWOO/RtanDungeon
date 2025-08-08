@@ -51,7 +51,7 @@ MonoBehaviour:
   useStamina: 15
   doesGatherResources: 0
   doesDealDamage: 1
-  damage: 10
+  damage: 1
 --- !u!95 &-7710376548453877207
 Animator:
   serializedVersion: 5
