@@ -14,7 +14,7 @@ public class Interaction : MonoBehaviour
     public GameObject curInteractGameObject;
     private IInteractable curInteractable;
 
-    public TextMeshProUGUI promptText;  //후에 드래그 앤 드랍 없이 가져오는 것 리펙토링 해보기
+    public TextMeshProUGUI promptText;  //TODO 후에 드래그 앤 드랍 없이 가져오는 것 리펙토링 해보기
     private Camera camera;
 
     private void Start()

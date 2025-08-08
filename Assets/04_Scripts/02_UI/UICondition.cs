@@ -7,6 +7,7 @@ public class UICondition : MonoBehaviour    //컨디션 매니저 같은 클래스 외부에서
     public Condition health;
     public Condition hunger;
     public Condition stamina;
+    public Condition speed;
 
     private void Start()
     {

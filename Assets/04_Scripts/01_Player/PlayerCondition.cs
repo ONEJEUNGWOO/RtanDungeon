@@ -15,6 +15,7 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
     Condition health { get { return uICondition.health; } }
     Condition hunger { get { return uICondition.hunger; } }
     Condition stamina { get { return uICondition.stamina; } }
+    Condition speed { get { return uICondition.speed; } }
 
     public float hungryDamage;
 
@@ -47,7 +48,6 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
         hunger.Add(amout);
     }
 
-
     public void Die()
     {
         Debug.Log("죽음");
@@ -66,5 +66,21 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
 
         stamina.Subtract(amount);
         return true;
+    }
+
+    public void Run(float amount)
+    {
+        StartCoroutine(ChangeSpeed(amount));
+    }
+
+    public IEnumerator ChangeSpeed(float amount)
+    {
+        float curSpeed = CharacterManager.Instance.Player.controller.moveSpeed;
+        CharacterManager.Instance.Player.controller.moveSpeed += amount;
+        yield return new WaitForSeconds(3f);
+
+        CharacterManager.Instance.Player.controller.moveSpeed = curSpeed;
+
+
     }
 }
