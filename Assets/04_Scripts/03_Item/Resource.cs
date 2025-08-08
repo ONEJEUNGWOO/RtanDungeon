@@ -12,11 +12,14 @@ public class Resource : MonoBehaviour
     {
         for (int i = 0; i < quantityPerHit; i++)
         {
-            if (capacy <= 0) break;
             capacy -= 1;
-            Instantiate(itemToGive.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
+            if (capacy <= 0)
+            {
+                Instantiate(itemToGive.dropPrefab, hitPoint, Quaternion.LookRotation(hitNormal, Vector3.up));
+                Destroy(gameObject);
+                break;
+            }
+            Instantiate(itemToGive.dropPrefab, hitPoint, Quaternion.LookRotation(hitNormal, Vector3.up));
         }
     }
-
-
 }

@@ -35,7 +35,6 @@ public class EquipTool : Equip
             {
                 attacking = true;
                 animator.SetTrigger("Attack");
-                //TODO 적에게 데미지를 줘야 함
                 Invoke("OnCanAttack", attackRate);
             }
         }
@@ -58,7 +57,7 @@ public class EquipTool : Equip
                 resource.Gather(hit.point, hit.normal);
             }
 
-            if (doesDealDamage && hit.collider.TryGetComponent(out NPC npc))    //공격기능 숙제
+            if (doesDealDamage && hit.collider.TryGetComponent(out NPC npc))    //공격기능 숙제 
             {
                 npc.TakePhysicalDamage(damage);
             }
