@@ -59,4 +59,13 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
         onTakeDamage?.Invoke();
         
     }
+
+    public bool UseStamina(float amount)
+    {
+        if (stamina.curValue - amount < 0f)
+            return false;
+
+        stamina.Subtract(amount);
+        return true;
+    }
 }
