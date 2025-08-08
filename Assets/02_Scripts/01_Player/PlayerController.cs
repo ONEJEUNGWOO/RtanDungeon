@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,7 +20,9 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
     public float lookSpeed;         //½Ã¾ß ÀÌµ¿¼Óµµ
     private float camCurXRot;       //ÇöÀçÄ«¸Þ¶ó ½Ã¾ß À§Ä¡
     private Vector2 mouseDelta;     //¸¶¿ì½º ÀÌµ¿¹üÀ§
+    public bool canLook = true;     //¸¶¿ì½º ÀÌµ¿ºÒ°¡ ¹× °¡´É ºÒ°ªÀ¸·Î Ç¥½Ã
 
+    public Action inventory;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
 
     private void LateUpdate()
     {
+        if (canLook)
         Look();
     }
 
@@ -103,8 +107,24 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
         for (int i = 0; i < rays.Length; i++)
         {
             if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
-            return true;
+                return true;
         }
         return false;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()     //½ÇÇà µÉ ¶§ ¸¶´Ù ºÒ°ªÀ» ¹Ý´ë·Î º¯°æÇØÁÖ´Â ÇÔ¼ö ¸¶¿ì½º Ä¿¼­ º¸ÀÌ°Å³ª È­¸é ¿òÁ÷ÀÓÀ» ºÒ°ªÀ¸·Î Á¶Á¤ÇÏ´Â ÇÔ¼ö
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }

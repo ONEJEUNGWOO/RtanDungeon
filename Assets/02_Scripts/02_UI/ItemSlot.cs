@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour   //아이템 슬롯 한칸에 들어갈 데이터들을 저장 해주는 클래스
 {
-    public ItemData Item;
+    public ItemData item;
+
+    public Button button;
+    public Image icon;
+    public TextMeshProUGUI quantityText;
+    private Outline outline;
 
     public UIInventory Inventory;
 
@@ -12,4 +19,34 @@ public class ItemSlot : MonoBehaviour
     public bool equipped;
     public int quantity;
 
+    private void Awake()
+    {
+        outline = GetComponent<Outline>();
+    }
+    private void OnEnable()
+    {
+        outline.enabled = equipped;
+    }
+
+    public void Set()
+    {
+        icon.gameObject.SetActive(true);
+        icon.sprite = item.icon;
+        quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
+
+        if (outline != null)
+            outline.enabled = equipped;
+    }
+
+    public void Clear()
+    {
+        item = null;
+        icon.gameObject.SetActive(false);
+        quantityText.text = string.Empty;
+    }
+
+    public void OnClickButton()
+    {
+        Inventory.SelectItem(index);
+    }
 }
