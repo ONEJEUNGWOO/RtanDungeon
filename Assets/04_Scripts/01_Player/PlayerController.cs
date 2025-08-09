@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour       //플레이어 이동을 담당할 클�
     {
         target.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
 
         target.gameObject.SetActive(true);
     }
