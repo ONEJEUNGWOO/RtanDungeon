@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·¡½º
 {
+    private Camera _camera;
+
+
     [Header("Movement")]  //Çì´õ ¼±¾ðÀ» ÇÏ¸é ÀÎ½ºÆåÅÍ¿¡¼­ ±¸ºÐÀÌ µÇ¾î º¸±â ÆíÇØÁø´Ù.
     public float moveSpeed;
     public float JumpPower;
@@ -21,12 +24,14 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
     private float camCurXRot;       //ÇöÀçÄ«¸Þ¶ó ½Ã¾ß À§Ä¡
     private Vector2 mouseDelta;     //¸¶¿ì½º ÀÌµ¿¹üÀ§
     public bool canLook = true;     //¸¶¿ì½º ÀÌµ¿ºÒ°¡ ¹× °¡´É ºÒ°ªÀ¸·Î Ç¥½Ã
+    public LayerMask layerMask;
 
     public Action inventory;
     private Rigidbody _rigidbody;
 
     private void Awake()
     {
+        _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
         Move();
         Debug.Log(transform.forward);
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
     private void LateUpdate()
     {
         if (canLook)
-        Look();
+            Look();
     }
 
 
@@ -126,5 +131,35 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void OnPushButton(InputAction.CallbackContext context)       //¿ìÅ¬¸¯ ÇßÀ» ¶§ ¹ß»ý ÇÒ ÀÌº¥Æ®
+    {
+        Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));    //½ºÅ©¸° Áß¾Ó¿¡¼­ ·¹ÀÌ°¡ ½ÃÀÛµÇ°Ô ÇÏ±â À§ÇØ /2¸¦ ÇÔ
+        RaycastHit hit;
+        Children target;
+
+        if (!Physics.Raycast(ray, out hit, maxLook, layerMask) || context.phase != InputActionPhase.Started)
+            return;
+
+        target = hit.transform.GetComponentInChildren<Children>();
+
+        Debug.Log($"µé¾î¿ÔÀ½ {hit.transform.gameObject.name}");
+
+        if (hit.transform.TryGetComponent<SpawnController>(out SpawnController spawner))
+        {
+            spawner.SpawnNPC();
+        }
+        
+        StartCoroutine(ButtonClick(target)); //TODO ÀÏ´Ü ¹öÆ°Àº ¿òÁ÷ÀÓ..
+    }
+
+    public IEnumerator ButtonClick(Children target)
+    {
+        target.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+
+        target.gameObject.SetActive(true);
     }
 }

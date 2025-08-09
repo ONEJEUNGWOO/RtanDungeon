@@ -5,7 +5,6 @@ using UnityEngine;
 public class JumpPoint : MonoBehaviour
 {
     public int JumpPower;
-    private Rigidbody _rigidbody;
 
     private void OnTriggerEnter(Collider other)
     {
