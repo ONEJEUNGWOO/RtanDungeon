@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +11,12 @@ public class Interaction : MonoBehaviour
     private float lastCheckTime;
     public float maxCheckDistance;
     public LayerMask layerMask;
+    public LayerMask spwanLayerMask;
 
     public GameObject curInteractGameObject;
     private IInteractable curInteractable;
+
+    public GameObject curSpawnGameObject;
 
     public TextMeshProUGUI promptText;  //TODO 후에 드래그 앤 드랍 없이 가져오는 것 리펙토링 해보기
     private Camera camera;
@@ -44,17 +48,33 @@ public class Interaction : MonoBehaviour
             else
             {
                 curInteractGameObject = null;
+                curSpawnGameObject = null;
                 curInteractable = null;
                 promptText.gameObject.SetActive(false);
             }
+
+            if (Physics.Raycast(ray, out hit, maxCheckDistance, spwanLayerMask)) //레이어마스크를 통해 스폰은 따로 관리
+            {
+                if (hit.collider.gameObject != curSpawnGameObject)
+                {
+                    curSpawnGameObject = hit.collider.gameObject;
+                    curInteractable = hit.collider.GetComponent<IInteractable>();
+                    SetSpawnPromptText();
+                }
+            }
         }
-       
     }
 
     private void SetPromptText()
     {
-        promptText.gameObject.SetActive (true);
-        promptText.text = curInteractable.GetInteractPrompt();      //TODO 프롬프트 작성법 생각 해 보기
+        promptText.gameObject.SetActive(true);
+        promptText.text = curInteractable.GetInteractPrompt();      
+    }
+
+    private void SetSpawnPromptText()
+    {
+        promptText.gameObject.SetActive(true);
+        promptText.text = curInteractable.GetInteractPrompt();      
     }
 
     public void OnInteracterInput(InputAction.CallbackContext context)
@@ -63,7 +83,7 @@ public class Interaction : MonoBehaviour
         {
             curInteractable.OnInteract();
             curInteractGameObject = null;
-            curInteractable = null ;
+            curInteractable = null;
             promptText.gameObject.SetActive(false);
         }
     }
