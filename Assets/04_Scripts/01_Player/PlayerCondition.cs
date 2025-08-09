@@ -50,7 +50,7 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
 
     public void Die()
     {
-        Debug.Log("죽음");
+        Debug.Log("죽음"); //TODO 죽었을 때 UI 만들기
     }
 
     public void TakePhysicalDamage(int damage)

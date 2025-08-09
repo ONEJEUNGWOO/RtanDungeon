@@ -54,7 +54,7 @@ public class Interaction : MonoBehaviour
     private void SetPromptText()
     {
         promptText.gameObject.SetActive (true);
-        promptText.text = curInteractable.GetInteractPrompt();
+        promptText.text = curInteractable.GetInteractPrompt();      //TODO 프롬프트 작성법 생각 해 보기
     }
 
     public void OnInteracterInput(InputAction.CallbackContext context)

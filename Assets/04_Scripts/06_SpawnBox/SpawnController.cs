@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class SpawnController : MonoBehaviour
 {
     [Header("Spawn NPC")]
-    public GameObject prefab; //프리팹 위치 수
+    public GameObject prefab; //프리팹
     public float spawnRate;
     public float lastSpawnTime = 0f;
     public int spawnCount;
@@ -14,7 +14,7 @@ public class SpawnController : MonoBehaviour
 
     public void SpawnNPC()
     {
-        if (lastSpawnTime == 0f)
+        if (lastSpawnTime == 0f)        // TODO 맨 처음 실행 할 때 if문 없이 쓸 방법 생각해보기
         {
             lastSpawnTime = Time.time;
 
