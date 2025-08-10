@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingBox : MonoBehaviour
+public class MovingBox : MonoBehaviour      //도전과제 움직이는 플렛폼 
 {
-    public int moveSpeed;
-    public float moveChangeTime;
-    public float curMoveChangeTime;
-    public bool isMove;
-    private bool isCoroutine = true;
-    private Rigidbody _rigidbody;
+    public int moveSpeed;               //움직일 속도
+    public float moveChangeTime;        
+    public float curMoveChangeTime;     
+    public bool isMove;                 
+    private bool isCoroutine = true;    
+    private Rigidbody _rigidbody;       
 
-    Vector3 moveLeft;
-    Vector3 moveRight;
+    Vector3 moveLeft;                   
+    Vector3 moveRight;                  
 
     private void Awake()
     {
@@ -20,21 +20,28 @@ public class MovingBox : MonoBehaviour
         curMoveChangeTime = moveChangeTime;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (isMove && isCoroutine)
-    //    {
-    //        Debug.Log("시작");
-    //        StartCoroutine(MovingHoraizontal());
-    //    }
-    //}
-
     private void Update()
     {
         moveLeft = -transform.right * moveSpeed * Time.deltaTime;
         moveRight = transform.right * moveSpeed * Time.deltaTime;
         MovinChange();
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.transform.SetParent(this.transform);
+    }
+  
+    private void OnCollisionExit(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.transform.SetParent(null);
     }
 
     private void MovinChange()
@@ -69,14 +76,4 @@ public class MovingBox : MonoBehaviour
     //    yield return new WaitForSeconds(moveChangeTime);
     //    isCoroutine = true;
     //}
-
-    private IEnumerator MovingHoraizontal()
-    {
-        isCoroutine = false;
-        transform.position += moveLeft;
-        yield return new WaitForSeconds(moveChangeTime);
-        
-        
-        isCoroutine = true;
-    }
 }
