@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class Children : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //그냥 자식 가져오기 위한 스크립트
 }
