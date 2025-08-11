@@ -8,6 +8,7 @@ public class SpawnController : MonoBehaviour , IInteractable
 {
     [Header("Spawn NPC")]
     public GameObject prefab; //프리팹
+    public string name;
     public float spawnRate;
     public float lastSpawnTime = 0f;
     public int spawnCount;
@@ -47,7 +48,7 @@ public class SpawnController : MonoBehaviour , IInteractable
 
     public string GetInteractPrompt()   //인터페이스 받아와서 텍스트 설정 해 주기
     {
-        string str = $"스폰 오브젝트 : {prefab.name}\n 스폰 가능 여부 : {isSpawn}\n 스폰까지 남은 시간 : {timeRemaining:n0}초\n 스폰 하시려면 오른쪽 마우스 버튼을 누르세요.";
+        string str = $"스폰 오브젝트 : {name}\n 스폰 가능 여부 : {isSpawn}\n 스폰까지 남은 시간 : {timeRemaining:n0}초\n 스폰 하시려면 오른쪽 마우스 버튼을 누르세요.";
         return str;
     }
 

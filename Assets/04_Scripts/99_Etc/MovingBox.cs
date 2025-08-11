@@ -5,10 +5,10 @@ using UnityEngine;
 public class MovingBox : MonoBehaviour      //도전과제 움직이는 플렛폼 
 {
     public int moveSpeed;               //움직일 속도
-    public float moveChangeTime;        
-    public float curMoveChangeTime;     
-    public bool isMove;                 
-    private bool isCoroutine = true;    
+    public float moveChangeTime;        //한 방향으로 이동할 시간
+    public float curMoveChangeTime;     //남은 이동시간
+    public bool isMove;                 //움직일 것인지 아닌지 선택가능
+    //private bool isCoroutine = true;  //물리로 이동 할 때 사용했던 변수
     private Rigidbody _rigidbody;       
 
     Vector3 moveLeft;                   
