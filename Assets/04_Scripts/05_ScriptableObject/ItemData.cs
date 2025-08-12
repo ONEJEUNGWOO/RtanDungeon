@@ -14,7 +14,8 @@ public enum ConsumableType
 {
     Health,
     Hunger,
-    Speed
+    Speed,
+    Debuf
 }
 
 [Serializable]

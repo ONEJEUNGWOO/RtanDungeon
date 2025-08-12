@@ -224,6 +224,11 @@ public class UIInventory : MonoBehaviour
             UnEquip(curEquipIndex);
         }
 
+        if (selectedItem.consumables.Length == 1)
+        {
+            CharacterManager.Instance.Player.condition.Slowingdebuff(selectedItem.consumables[0].value);
+        }
+
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
         CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
@@ -237,6 +242,11 @@ public class UIInventory : MonoBehaviour
         slots[index].equipped = false;
         CharacterManager.Instance.Player.equip.UnEquip();
         UpdateUI();
+        
+        if (selectedItem.consumables.Length == 1)
+        {
+            CharacterManager.Instance.Player.condition.Slowingdebuff(selectedItem.consumables[0].value);
+        }
 
         if (selectedItemIndex == index)
         {

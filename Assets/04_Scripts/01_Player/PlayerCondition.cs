@@ -12,6 +12,8 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
 {
     public UICondition uICondition;
 
+    private bool isDebuf = false;
+
     Condition health { get { return uICondition.health; } }
     Condition hunger { get { return uICondition.hunger; } }
     Condition stamina { get { return uICondition.stamina; } }
@@ -82,5 +84,21 @@ public class PlayerCondition : MonoBehaviour, IDamage //플레이어 컨디션을 조절해
         CharacterManager.Instance.Player.controller.moveSpeed = curSpeed;
 
 
+    }
+
+    public void Slowingdebuff(float amount)
+    {
+        if (!isDebuf)
+        {
+            Debug.Log("실행은 됨");
+            CharacterManager.Instance.Player.controller.moveSpeed -= amount;
+            isDebuf = true;
+        }
+        else
+        {
+            Debug.Log("꺼짐");
+            CharacterManager.Instance.Player.controller.moveSpeed += amount;
+            isDebuf = false;
+        }
     }
 }

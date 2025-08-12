@@ -50,8 +50,6 @@ MonoBehaviour:
   attackDistance: 1
   useStamina: 10
   doesGatherResources: 1
-  enemys:
-  - {fileID: 0}
   doesDealDamage: 0
   damage: 0
 --- !u!95 &-2781937256757382420

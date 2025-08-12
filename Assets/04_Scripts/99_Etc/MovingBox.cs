@@ -9,7 +9,7 @@ public class MovingBox : MonoBehaviour      //도전과제 움직이는 플렛폼
     public float curMoveChangeTime;     //남은 이동시간
     public bool isMove;                 //움직일 것인지 아닌지 선택가능
     //private bool isCoroutine = true;  //물리로 이동 할 때 사용했던 변수
-    private Rigidbody _rigidbody;       
+    private Rigidbody _rigidbody;       //리지드바디 캐싱해두기
 
     Vector3 moveLeft;                   
     Vector3 moveRight;                  

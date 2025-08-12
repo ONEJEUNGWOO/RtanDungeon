@@ -2357,7 +2357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uICondition: {fileID: 0}
-  hungryDamage: 2
+  hungryDamage: 0
 --- !u!114 &701850903
 MonoBehaviour:
   m_ObjectHideFlags: 0

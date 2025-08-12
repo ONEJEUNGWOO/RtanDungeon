@@ -43,6 +43,18 @@ public class Interaction : MonoBehaviour
                     curInteractGameObject = hit.collider.gameObject;
                     curInteractable = hit.collider.GetComponent<IInteractable>();
                     SetPromptText();
+
+                    //if (1 << hit.transform.gameObject.layer == layerMask)     //허윤님이 가르쳐 주신 방법으로 고쳐 본 방법 위에 조건문에 + spwanLayerMask 추가하면 사용 가능
+                    //{
+
+                    //    SetPromptText();
+                    //}
+
+                    //if (1 << hit.transform.gameObject.layer == spwanLayerMask)
+                    //{
+                    //    SetSpawnPromptText();
+                    //    Debug.Log("1");
+                    //}
                 }
             }
             else
