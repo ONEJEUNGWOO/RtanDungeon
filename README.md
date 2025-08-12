@@ -20,6 +20,7 @@ RtanDungeon
 12. launchingBox 폴더 내의 launchingBox 스크립트를 통해 특정 시간 후 특정 키를 입력시 특정 방향으로 힘을 가해 발사하는 시스템 구현 // 도전기능
 
 [핵심기능]
+
 Rigidbody의 Force모드, InputSystem, Ray와 RayCast, Coroutine, UI와 상호작용, AI Navigation을 통한 Ai이동, ScriptableObject를 이용한 데이터 관리
 
 
