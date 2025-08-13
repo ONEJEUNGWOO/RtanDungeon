@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour       //플레이어 이동을 담당할 클�
     {
         if (context.phase == InputActionPhase.Performed)        //키를 누르고 있을 땐 방향을 받아와라
         {
-            curMovementInput = context.ReadValue<Vector2>();
+            curMovementInput = context.ReadValue<Vector2>();        //가져오기
         }
         else if (context.phase == InputActionPhase.Canceled)        //키를 누르고 있지 않다면 방향을 없애라.
         {

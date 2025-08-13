@@ -35,6 +35,7 @@ public class launchingBox : MonoBehaviour
     private void Awake()
     {
         slider.maxValue = readyTime;    //슬라이더 길이 미리 맞춰주기
+        canvas.gameObject.SetActive(false);
 
         switch (type)                   //지정 방향벡터 넣어주기
         {

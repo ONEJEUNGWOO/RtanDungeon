@@ -93,10 +93,9 @@ public class UIInventory : MonoBehaviour
                 return;
             }
         }
-
         ItemSlot emptySlot = GetEmptySlot();
 
-        if(emptySlot != null)
+        if (emptySlot != null)
         {
             emptySlot.item = data;
             emptySlot.quantity = 1;
@@ -104,7 +103,6 @@ public class UIInventory : MonoBehaviour
             CharacterManager.Instance.Player.   ItemData = null;
             return;
         }
-
         ThrowItem(data);
         CharacterManager.Instance.Player.ItemData = null;
     }
@@ -114,8 +112,11 @@ public class UIInventory : MonoBehaviour
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item != null)
+            {
                 slots[i].Set();
-            else 
+                UIMiniInventory.Instance.UseConsumableIcon();
+            }
+            else
                 slots[i].Clear();
         }
     }
