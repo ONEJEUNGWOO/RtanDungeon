@@ -81,7 +81,8 @@ public class UIMiniInventory : MonoBehaviour
     public void OnUseConsumableItem(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Started) return;
-        Debug.Log("실행?");
+
+        if (inventory.slots[curIconIndex].item == null || !inventory.slots[curIconIndex].item.canStack) return; //null예외처리
 
         if (item.type == ItemType.Consumable)
         {
@@ -113,6 +114,6 @@ public class UIMiniInventory : MonoBehaviour
     {
         icon.sprite = null;
         item = null;
-        curIconIndex = -1;
+        curIconIndex = 0;
     }
 }
