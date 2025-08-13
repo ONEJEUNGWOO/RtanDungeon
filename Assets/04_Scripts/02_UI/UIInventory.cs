@@ -218,6 +218,21 @@ public class UIInventory : MonoBehaviour
         UpdateUI();
     }
 
+    public void RemoveMiniInventoryItem(int itemIndex)
+    {
+        slots[itemIndex].quantity--;
+
+        if (slots[itemIndex].quantity <= 0)
+        {
+            selectedItem = null;
+            slots[itemIndex].item = null;
+            selectedItemIndex = -1;
+            ClearSelectedItemWindow();
+        }
+
+        UpdateUI();
+    }
+
     public void OnEquipButton()
     {
         if (slots[curEquipIndex].equipped)
