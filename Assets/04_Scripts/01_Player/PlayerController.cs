@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
             Look();
     }
 
-
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x; //ÇöÀç ³» ±âÁØ ¹æÇâÀ» transformÀ» ÅëÇØ ±¸ÇÏ°í Å° ÀÔ·Â½Ã º¯°æ ÇØÁÖ´Â ÄÚµå, À§Ä¡º¤ÅÍ?
@@ -150,7 +149,7 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
         {
             spawner.SpawnNPC();
         }
-        
+
         StartCoroutine(ButtonClick(target)); //TODO ÀÏ´Ü ¹öÆ°Àº ¿òÁ÷ÀÓ..
     }
 
@@ -161,5 +160,13 @@ public class PlayerController : MonoBehaviour       //ÇÃ·¹ÀÌ¾î ÀÌµ¿À» ´ã´çÇÒ Å¬·
         yield return new WaitForSeconds(0.3f);
 
         target.gameObject.SetActive(true);
+    }
+
+    public void CatLeap(bool isWall)
+    {
+        if (!isWall)
+            _rigidbody.useGravity = true;
+        else
+            _rigidbody.useGravity = false;
     }
 }
